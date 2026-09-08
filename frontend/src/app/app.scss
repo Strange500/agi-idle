@@ -72,11 +72,25 @@
       transition: width 0.3s ease, background-color 0.3s ease;
 
       &.warning {
+        background: #e3b341;
+      }
+      &.overload {
         background: #f85149;
         animation: pulse 1s infinite;
       }
     }
   }
+}
+
+.efficiency-warning {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(248, 81, 73, 0.1);
+  border: 1px solid #f85149;
+  border-radius: 4px;
+  color: #f85149;
+  font-weight: bold;
+  animation: pulse 1s infinite;
 }
 
 .game-grid {

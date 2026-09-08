@@ -1,6 +1,13 @@
 <div class="game-container">
   <header class="game-header">
-    <h1>Phase 1: The Perceptron</h1>
+    <div class="header-content">
+      <h1>Phase 1: The Perceptron</h1>
+      @if (efficiency() < 100) {
+        <div class="efficiency-warning">
+          ⚠️ BLACKOUT! Production slowed to {{ efficiency() | number:'1.0-0' }}%
+        </div>
+      }
+    </div>
     <div class="data-counter">
       <span class="label">Data Collected:</span>
       <span class="value">{{ data() | number:'1.0-0' }}</span>
@@ -15,7 +22,7 @@
     <div class="progress-bar-bg">
       <div 
         class="progress-bar-fill" 
-        [ngClass]="{'warning': energyWarning()}"
+        [ngClass]="{'warning': energyWarning(), 'overload': efficiency() < 100}"
         [style.width.%]="energyRatio()">
       </div>
     </div>
@@ -40,10 +47,10 @@
 
       <hr>
       <h3>Compute Units (Data +, Energy -)</h3>
-      <button class="action-btn compute" (click)="buyPocketCalculator()" [disabled]="data() < 10 || (energyUsed() + 0.1) > energyCap()">
+      <button class="action-btn compute" (click)="buyPocketCalculator()" [disabled]="data() < 10">
         Buy Pocket Calculator (Cost: 10 Data, 0.1W)
       </button>
-      <button class="action-btn compute" (click)="buySmartphone()" [disabled]="data() < 50 || (energyUsed() + 0.5) > energyCap()">
+      <button class="action-btn compute" (click)="buySmartphone()" [disabled]="data() < 50">
         Buy Smartphone (Cost: 50 Data, 0.5W)
       </button>
     </section>

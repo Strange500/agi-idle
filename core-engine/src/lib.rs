@@ -157,10 +157,6 @@ impl GameState {
     }
 
     pub fn add_compute_unit(&mut self, new_unit: ComputeUnit) -> bool {
-        if self.energy_used + new_unit.energy_consumption > self.energy_capacity {
-            return false; // Not enough energy capacity to add this unit
-        }
-
         if self.data < new_unit.initial_data_price {
             return false; // Not enough data to add this unit
         }
@@ -173,6 +169,10 @@ impl GameState {
     }
 
     pub fn tick(&mut self, delta_seconds: f64) {
-        self.data += self.compute * delta_seconds;
+        let mut efficiency = 1.0;
+        if self.energy_used > self.energy_capacity && self.energy_used > 0.0 {
+            efficiency = self.energy_capacity / self.energy_used;
+        }
+        self.data += self.compute * efficiency * delta_seconds;
     }
 }

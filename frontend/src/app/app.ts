@@ -26,6 +26,14 @@ export class App implements OnInit {
   
   energyWarning = computed(() => this.energyRatio() >= 90);
 
+  efficiency = computed(() => {
+    const used = this.energyUsed();
+    const cap = this.energyCap();
+    if (used === 0) return 100;
+    if (cap >= used) return 100;
+    return (cap / used) * 100;
+  });
+
   // Inventory Tracking
   inventory = signal({
     'Potato Battery': 1,
