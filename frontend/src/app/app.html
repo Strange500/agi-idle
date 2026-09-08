@@ -1,0 +1,9 @@
+<main style="background: black; color: green; font-family: monospace; padding: 2rem;">
+      <h1>Phase 1: The Perceptron prout</h1>
+      <p>Data: {{ data() | number:'1.0-0' }}</p>
+      <p>Energy: {{ energyUsed() | number:'1.0-1' }} / {{ energyCap() | number:'1.0-1' }} W</p>
+      
+      <button (click)="onManualClick()">Label Data</button>
+      <button (click)="onAddGenerator()">Build Potato Battery (10 data)</button>
+      <button (click)="onAddComputeUnit()">Build Pocket Calculator (10 data)</button>
+    </main>
