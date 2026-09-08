@@ -9,6 +9,7 @@ import init, { GameState, ComputeUnit, ElectricityGenerator } from '../../public
   standalone: true,
   imports: [DecimalPipe, NgClass],
   templateUrl: './app.html',
+  styleUrl: './app.scss'
 })
 export class App implements OnInit {
   private game!: GameState;
