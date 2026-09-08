@@ -42,6 +42,12 @@ export class App implements OnInit {
     'Solar Panel': 0
   });
 
+  // Dynamic Prices
+  potatoBatteryPrice = computed(() => 25 * Math.pow(1.15, this.inventory()['Potato Battery']));
+  solarPanelPrice = computed(() => 150 * Math.pow(1.15, this.inventory()['Solar Panel']));
+  pocketCalculatorPrice = computed(() => 10 * Math.pow(1.15, this.inventory()['Pocket Calculator']));
+  smartphonePrice = computed(() => 50 * Math.pow(1.15, this.inventory()['Smartphone']));
+
   async ngOnInit() {
     await init('/wasm/core_engine_bg.wasm');
     this.game = new GameState();

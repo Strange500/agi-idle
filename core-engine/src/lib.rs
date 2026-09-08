@@ -146,22 +146,28 @@ impl GameState {
     }
 
     pub fn add_generator(&mut self, new_gen: ElectricityGenerator) -> bool {
-        if self.data < new_gen.initial_data_price {
+        let count = self.electricity_generators.iter().filter(|g| g.name == new_gen.name).count();
+        let price = new_gen.initial_data_price * (1.15_f64).powi(count as i32);
+
+        if self.data < price {
             return false; // Not enough data
         }
         
-        self.data -= new_gen.initial_data_price;
+        self.data -= price;
         self.energy_capacity += new_gen.energy_production;
         self.electricity_generators.push(new_gen);
         true
     }
 
     pub fn add_compute_unit(&mut self, new_unit: ComputeUnit) -> bool {
-        if self.data < new_unit.initial_data_price {
+        let count = self.compute_units.iter().filter(|u| u.name == new_unit.name).count();
+        let price = new_unit.initial_data_price * (1.15_f64).powi(count as i32);
+
+        if self.data < price {
             return false; // Not enough data to add this unit
         }
 
-        self.data -= new_unit.initial_data_price;
+        self.data -= price;
         self.compute += new_unit.compute_power;
         self.energy_used += new_unit.energy_consumption;
         self.compute_units.push(new_unit);

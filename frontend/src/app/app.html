@@ -38,20 +38,20 @@
 
       <hr>
       <h3>Generators (Energy +)</h3>
-      <button class="action-btn generator" (click)="buyPotatoBattery()" [disabled]="data() < 25">
-        Buy Potato Battery (Cost: 25 Data, +0.5W)
+      <button class="action-btn generator" (click)="buyPotatoBattery()" [disabled]="data() < potatoBatteryPrice()">
+        Buy Potato Battery (Cost: {{ potatoBatteryPrice() | number:'1.0-0' }} Data, +0.5W)
       </button>
-      <button class="action-btn generator" (click)="buySolarPanel()" [disabled]="data() < 150">
-        Buy Solar Panel (Cost: 150 Data, +5.0W)
+      <button class="action-btn generator" (click)="buySolarPanel()" [disabled]="data() < solarPanelPrice()">
+        Buy Solar Panel (Cost: {{ solarPanelPrice() | number:'1.0-0' }} Data, +5.0W)
       </button>
 
       <hr>
       <h3>Compute Units (Data +, Energy -)</h3>
-      <button class="action-btn compute" (click)="buyPocketCalculator()" [disabled]="data() < 10">
-        Buy Pocket Calc (Cost: 10 Data, -0.1W, +1 Compute)
+      <button class="action-btn compute" (click)="buyPocketCalculator()" [disabled]="data() < pocketCalculatorPrice()">
+        Buy Pocket Calc (Cost: {{ pocketCalculatorPrice() | number:'1.0-0' }} Data, -0.1W, +1 Compute)
       </button>
-      <button class="action-btn compute" (click)="buySmartphone()" [disabled]="data() < 50">
-        Buy Smartphone (Cost: 50 Data, -0.5W, +6 Compute)
+      <button class="action-btn compute" (click)="buySmartphone()" [disabled]="data() < smartphonePrice()">
+        Buy Smartphone (Cost: {{ smartphonePrice() | number:'1.0-0' }} Data, -0.5W, +6 Compute)
       </button>
     </section>
 
