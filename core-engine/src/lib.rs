@@ -23,40 +23,40 @@ impl ElectricityGenerator {
     pub fn new_potato_battery() -> Self {
         Self {
             name: "Potato Battery".to_string(),
-            energy_production: 0.1,
-            initial_data_price: 10.0,
+            energy_production: 0.5, // 5x Pocket Calculators
+            initial_data_price: 25.0,
         }
     }
 
     pub fn new_solar_panel() -> Self {
         Self {
             name: "Solar Panel".to_string(),
-            energy_production: 0.5,
-            initial_data_price: 50.0,
+            energy_production: 5.0, // 10x Smartphones
+            initial_data_price: 150.0,
         }
     }
 
     pub fn new_wind_turbine() -> Self {
         Self {
             name: "Wind Turbine".to_string(),
-            energy_production: 1.0,
-            initial_data_price: 100.0,
+            energy_production: 20.0,
+            initial_data_price: 1000.0,
         }
     }
 
     pub fn new_hydro_dam() -> Self {
         Self {
             name: "Hydro Dam".to_string(),
-            energy_production: 2.0,
-            initial_data_price: 200.0,
+            energy_production: 100.0,
+            initial_data_price: 8000.0,
         }
     }
 
     pub fn new_nuclear_reactor() -> Self {
         Self {
             name: "Nuclear Reactor".to_string(),
-            energy_production: 5.0,
-            initial_data_price: 500.0,
+            energy_production: 1000.0,
+            initial_data_price: 50000.0,
         }
     }
 }
@@ -84,7 +84,7 @@ impl ComputeUnit {
     pub fn new_smartphone() -> Self {
         Self {
             name: "Smartphone".to_string(),
-            compute_power: 5.0,
+            compute_power: 6.0,
             energy_consumption: 0.5,
             initial_data_price: 50.0,
         }
@@ -93,36 +93,36 @@ impl ComputeUnit {
     pub fn new_desktop_pc() -> Self {
         Self {
             name: "Desktop PC".to_string(),
-            compute_power: 10.0,
-            energy_consumption: 1.0,
-            initial_data_price: 100.0,
+            compute_power: 25.0,
+            energy_consumption: 2.0,
+            initial_data_price: 200.0,
         }
     }
 
     pub fn new_server_rack() -> Self {
         Self {
             name: "Server Rack".to_string(),
-            compute_power: 20.0,
-            energy_consumption: 2.0,
-            initial_data_price: 200.0,
+            compute_power: 150.0,
+            energy_consumption: 10.0,
+            initial_data_price: 1000.0,
         }
     }
 
     pub fn new_supercomputer() -> Self {
         Self {
             name: "Supercomputer".to_string(),
-            compute_power: 50.0,
-            energy_consumption: 5.0,
-            initial_data_price: 500.0,
+            compute_power: 1000.0,
+            energy_consumption: 50.0,
+            initial_data_price: 8000.0,
         }
     }
 
     pub fn new_quantum_computer() -> Self {
         Self {
             name: "Quantum Computer".to_string(),
-            compute_power: 100.0,
-            energy_consumption: 10.0,
-            initial_data_price: 1000.0,
+            compute_power: 10000.0,
+            energy_consumption: 250.0,
+            initial_data_price: 50000.0,
         }
     }
 }
