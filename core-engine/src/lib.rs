@@ -145,29 +145,31 @@ impl GameState {
         self.data += 1.0;
     }
 
-    pub fn add_generator(&mut self, new_gen: ElectricityGenerator) {
+    pub fn add_generator(&mut self, new_gen: ElectricityGenerator) -> bool {
         if self.data < new_gen.initial_data_price {
-            return; // Not enough data
+            return false; // Not enough data
         }
         
         self.data -= new_gen.initial_data_price;
         self.energy_capacity += new_gen.energy_production;
         self.electricity_generators.push(new_gen);
+        true
     }
 
-    pub fn add_compute_unit(&mut self, new_unit: ComputeUnit) {
+    pub fn add_compute_unit(&mut self, new_unit: ComputeUnit) -> bool {
         if self.energy_used + new_unit.energy_consumption > self.energy_capacity {
-            return; // Not enough energy capacity to add this unit
+            return false; // Not enough energy capacity to add this unit
         }
 
         if self.data < new_unit.initial_data_price {
-            return; // Not enough data to add this unit
+            return false; // Not enough data to add this unit
         }
 
         self.data -= new_unit.initial_data_price;
         self.compute += new_unit.compute_power;
         self.energy_used += new_unit.energy_consumption;
         self.compute_units.push(new_unit);
+        true
     }
 
     pub fn tick(&mut self, delta_seconds: f64) {

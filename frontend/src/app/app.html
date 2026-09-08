@@ -1,9 +1,79 @@
-<main style="background: black; color: green; font-family: monospace; padding: 2rem;">
-      <h1>Phase 1: The Perceptron prout</h1>
-      <p>Data: {{ data() | number:'1.0-0' }}</p>
-      <p>Energy: {{ energyUsed() | number:'1.0-1' }} / {{ energyCap() | number:'1.0-1' }} W</p>
+<div class="game-container">
+  <header class="game-header">
+    <h1>Phase 1: The Perceptron</h1>
+    <div class="data-counter">
+      <span class="label">Data Collected:</span>
+      <span class="value">{{ data() | number:'1.0-0' }}</span>
+    </div>
+  </header>
+
+  <div class="energy-panel">
+    <div class="energy-stats">
+      <span class="label">Energy Load</span>
+      <span class="value">{{ energyUsed() | number:'1.0-1' }} / {{ energyCap() | number:'1.0-1' }} W</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div 
+        class="progress-bar-fill" 
+        [ngClass]="{'warning': energyWarning()}"
+        [style.width.%]="energyRatio()">
+      </div>
+    </div>
+  </div>
+
+  <main class="game-grid">
+    <section class="panel shop-panel">
+      <h2>Actions & Shop</h2>
       
-      <button (click)="onManualClick()">Label Data</button>
-      <button (click)="onAddGenerator()">Build Potato Battery (10 data)</button>
-      <button (click)="onAddComputeUnit()">Build Pocket Calculator (10 data)</button>
-    </main>
+      <button class="action-btn primary" (click)="onManualClick()">
+        [+] Label Data Manually
+      </button>
+
+      <hr>
+      <h3>Generators (Energy +)</h3>
+      <button class="action-btn generator" (click)="buyPotatoBattery()" [disabled]="data() < 10">
+        Buy Potato Battery (Cost: 10 Data)
+      </button>
+      <button class="action-btn generator" (click)="buySolarPanel()" [disabled]="data() < 50">
+        Buy Solar Panel (Cost: 50 Data)
+      </button>
+
+      <hr>
+      <h3>Compute Units (Data +, Energy -)</h3>
+      <button class="action-btn compute" (click)="buyPocketCalculator()" [disabled]="data() < 10 || (energyUsed() + 0.1) > energyCap()">
+        Buy Pocket Calculator (Cost: 10 Data, 0.1W)
+      </button>
+      <button class="action-btn compute" (click)="buySmartphone()" [disabled]="data() < 50 || (energyUsed() + 0.5) > energyCap()">
+        Buy Smartphone (Cost: 50 Data, 0.5W)
+      </button>
+    </section>
+
+    <section class="panel inventory-panel">
+      <h2>Inventory</h2>
+      <ul class="inventory-list">
+        <li>
+          <span class="item-name">🥔 Potato Battery</span>
+          <span class="item-count">x{{ inventory()['Potato Battery'] }}</span>
+        </li>
+        @if (inventory()['Solar Panel'] > 0) {
+          <li>
+            <span class="item-name">☀️ Solar Panel</span>
+            <span class="item-count">x{{ inventory()['Solar Panel'] }}</span>
+          </li>
+        }
+        @if (inventory()['Pocket Calculator'] > 0) {
+          <li>
+            <span class="item-name">🧮 Pocket Calculator</span>
+            <span class="item-count">x{{ inventory()['Pocket Calculator'] }}</span>
+          </li>
+        }
+        @if (inventory()['Smartphone'] > 0) {
+          <li>
+            <span class="item-name">📱 Smartphone</span>
+            <span class="item-count">x{{ inventory()['Smartphone'] }}</span>
+          </li>
+        }
+      </ul>
+    </section>
+  </main>
+</div>
