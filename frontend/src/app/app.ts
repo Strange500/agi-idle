@@ -49,7 +49,7 @@ export class App implements OnInit {
   smartphonePrice = computed(() => 50 * Math.pow(1.15, this.inventory()['Smartphone']));
 
   async ngOnInit() {
-    await init('/wasm/core_engine_bg.wasm');
+    await init('wasm/core_engine_bg.wasm');
     this.game = new GameState();
     this.syncState();
 
